@@ -1,4 +1,5 @@
 # 路由 & 控制器
+
 路由文件默认在 `usr/routes.php`，你也可以根据自己的情况修改配置文件，指定路由文件路径。
 
 控制器文件默认在 `usr/Controller`文件夹内。
@@ -26,7 +27,7 @@ $route->any($path, $hander);   // GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
 
 ```php
 $route->get('/hello/{name}', function (\Cabal\Core\Http\Server $server, \Psr\Http\Message\ServerRequestInterface $request, $vars = []) {
-    return "hello {$vars['name']}!";
+    return "hello " . $vars['name'];
 });
 ```
 >  http://localhost:9501/hello/cabal 
@@ -35,7 +36,7 @@ $route->get('/hello/{name}', function (\Cabal\Core\Http\Server $server, \Psr\Htt
 
 ```php
 function hello (\Cabal\Core\Http\Server $server, \Psr\Http\Message\ServerRequestInterface $request, $vars = []) {
-    return "hello {$vars['name']}!";
+    return "hello " . $vars['name'];
 }
 $route->get('/hello/{name}', 'hello');
 ```
@@ -53,12 +54,12 @@ class HelloController
 {
     function getWorld(Server $server, ServerRequestInterface $request, $vars = [])
     {
-        return "hello {$vars['name']}!";
+        return "hello " . $vars['name'];
     }
 
     static public function staticWorld(Server $server, ServerRequestInterface $request, $vars = [])
     {
-        return "hello {$vars['id']}!";
+        return "hello " . $vars['id'];
     }
 }
 ```
@@ -104,7 +105,7 @@ $route->group([
 // 在 routes.php 文件内 定义中间件 
 $dispatcher->addMiddleware('before', function (\Cabal\Core\Http\Server $server, \Psr\Http\Message\ServerRequestInterface $request, $vars, $next, $middlewareArgs = []) {
     // code..
-    return "before {$middlewareArgs['name']}."; // 直接返回，不执行控制器代码，会继续执行其他中间件
+    return "before " . $middlewareArgs['name']; // 直接返回，不执行控制器代码，会继续执行其他中间件
 });
 
 $dispatcher->addMiddleware('after', function (\Cabal\Core\Http\Server $server, \Psr\Http\Message\ServerRequestInterface $request, $vars, $next, $middlewareArgs = []) {

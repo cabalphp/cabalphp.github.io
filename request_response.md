@@ -9,7 +9,7 @@ CabalPHP 的请求（Request）和响应（Response）对象依赖 [zendframewor
 你可以用PSR-7中的 `\Psr\Http\Message\ServerRequestInterface` 来获得请求对象：
 ```php
 $route->get('/hello/{name}', function (\Cabal\Core\Http\Server $server, \Psr\Http\Message\ServerRequestInterface $request, $vars = []) {
-    return "hello {$vars['name']}!";
+    return "hello " . $vars['name'];
 });
 ```
 
@@ -19,7 +19,7 @@ use Cabal\Core\Http\Request;
 use \Cabal\Core\Http\Server;
 
 $route->get('/hello/{name}', function (Server $server, Request $request, $vars = []) {
-    return "hello {$vars['name']}!";
+    return "hello " . $vars['name'];
 });
 ```
 

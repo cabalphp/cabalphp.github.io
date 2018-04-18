@@ -59,7 +59,7 @@ $route->any('/', function (Server $server, Request $request, $vars = []) {
         $session['username'] = $request->input('username');
     }
     $response->getBody()->write(
-        isset($session['username']) ? "已登录: {$session['username']}" : '未登录'
+        isset($session['username']) ? ('已登录: ' . $session['username']) : '未登录'
     );
     return $response;
 })->middleware(['enableSession']); 
@@ -70,3 +70,4 @@ $route->any('/', function (Server $server, Request $request, $vars = []) {
 ?> `enableSession` 中间件会在请求结束前将session中的数据持久化。
 
 !> 不建议用 `$_SESSION` 作为变量名接收 `$request->session()` 的返回值。
+
