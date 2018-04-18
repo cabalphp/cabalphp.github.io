@@ -13,7 +13,7 @@ composer create-project cabalphp/cabal-skeleton
 ### 手动安装
 
 ```bash
-git clone https://github.com/cabalphp/cabal-skeleton
+git clone git@github.com:cabalphp/skeleton.git
 cd cabal-skeleton
 composer install
 ```
