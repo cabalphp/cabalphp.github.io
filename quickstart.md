@@ -5,7 +5,7 @@
 
 ### composer快速安装
 
-建议适用国内镜像
+建议使用国内镜像
 
 ```bash
 composer create-project cabalphp/cabal-skeleton
