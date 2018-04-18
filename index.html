@@ -9,6 +9,7 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="/_media/vue.css">
+  <link rel="stylesheet" href="/_media/gitalk.css">
   <script>
     var _hmt = _hmt || [];
     (function () {
@@ -18,6 +19,7 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+  <script src="//unpkg.com/docsify-edit-on-github@1.0.1/index.js"></script>
 
 </head>
 
@@ -36,6 +38,8 @@
       noEmoji: true,
       coverpage: ['/', '/zh-cn/'],
       plugins: [
+        EditOnGithubPlugin.create('https://github.com/cabalphp/cabalphp.github.io/blob/master/', null, '编辑/Edit'),
+        // power by
         function (hook, vm) {
           hook.beforeEach(function (html) {
             var url = 'https://github.com/QingWei-Li/docsify/blob/master/docs/' + vm.route.file
@@ -56,7 +60,20 @@
   <script src="/_media/prism-json.min.js"></script>
   <script src="/_media/prism-php.min.js"></script>
   <script src="/_media/prism-php-extras.min.js"></script>
+  <script src="/_media/gitalk.plugin.min.js"></script>
+  <script src="/_media/gitalk.min.js"></script>
 
+  <script>
+    const gitalk = new Gitalk({
+      clientID: 'acc9efbdd162eb4f6c4a',
+      clientSecret: '651ca4bf4081f7091166cdf7b5fcf4e959d5ffc0',
+      repo: 'cabalphp',
+      owner: 'cabalphp',
+      admin: ['cabal-php', 'keefe-wu'],
+      // facebook-like distraction free mode
+      distractionFreeMode: false
+    });
+  </script>
 </body>
 
 </html>
