@@ -14,7 +14,7 @@ composer create-project cabalphp/cabal-skeleton
 
 ```bash
 git clone git@github.com:cabalphp/skeleton.git
-cd cabal-skeleton
+cd skeleton
 composer install
 ```
 

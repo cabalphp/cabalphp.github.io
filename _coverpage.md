@@ -12,5 +12,5 @@
 * 使用IDE（Sublime Text/VSCode/PhpStorm等）有**完整的代码提示**！
 * 支持HTTP、TCP、websocket等多种协议
 
-[GitHub](https://github.com/cabalphp/cabal-skeleton/)
+[GitHub](https://github.com/cabalphp/skeleton/)
 [Get Started](#cabalphp)
