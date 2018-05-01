@@ -37,7 +37,7 @@ use Cabal\Core\Http\Middleware\EnableSession;
 $dispatcher->addMiddleware('enableSession', EnableSession::class);
 ```
 
-Session 持久化存储依赖缓存服务，所以还要修改 `usr/boot.php`，取消 `Boot` 类中的 `use Cabal\Core\Cache\Boot\HasCache` 注释：
+Session 持久化存储依赖缓存服务，所以还要修改 `usr/boot.php`，取消 `Boot` 类中的 `use Cabal\Core\Cache\ServerHasCache` 注释：
 ```php
 class Boot extends Cabal\Core\Application\Boot
 {
@@ -65,7 +65,7 @@ $route->any('/', function (Server $server, Request $request, $vars = []) {
 })->middleware(['enableSession']); 
 ```
 
-`$request->session()` 返回的是一个实现了 `\Iterator`, `\ArrayAccess`, `\Countable`, `\JsonSerializable` 的 `Cabal\Core\Http\Session` 对象，所以你可以和使用 `$_SESSION` 一样使用它，也可以作为一个对象使用。
+`$request->session()` 返回的是一个实现了 `\Iterator`, `\ArrayAccess`, `\Countable`, `\JsonSerializable` 的 `Cabal\Core\Session` 对象，所以你可以和使用 `$_SESSION` 一样使用它，也可以作为一个对象使用。
 
 ?> `enableSession` 中间件会在请求结束前将session中的数据持久化。
 

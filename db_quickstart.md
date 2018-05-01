@@ -2,13 +2,13 @@
 
 ## 概述
 
-要使用 Cabal-DB 需要先修改 `usr/boot.php`，取消 `Boot` 类中的 `use Cabal\DB\Boot\HasDB` 注释：
+要使用 Cabal-DB 需要先修改 `usr/boot.php`，取消 `Boot` 类中的 `use Cabal\DB\ServerHasDB` 注释：
 
 ```php
 class Boot extends Cabal\Core\Application\Boot
 {
     //...
-    use Cabal\DB\Boot\HasDB;
+    use Cabal\DB\ServerHasDB;
     //... 
 }
 ```
@@ -102,7 +102,7 @@ return[
 
 获取数据库引擎：
 ```
-$db = $server->boot()->db(); 
+$db = $server->db(); 
 ```
 
 

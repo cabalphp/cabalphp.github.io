@@ -97,7 +97,7 @@ $request->filled($name);
 
 CabalPHP 接受以下数据作为控制器返回值：
 
-* 实现了 `Psr\Http\Message\ResponseInterface` 接口的对象
+1. 实现了 `Psr\Http\Message\ResponseInterface` 接口的对象
 
 ```php
 use Cabal\Core\Http\Server;
@@ -128,7 +128,7 @@ $route->get('/', function (\Cabal\Core\Http\Server $server, \Psr\Http\Message\Se
 
     hello world
 
-* 数组、`stdClass`或实现了`\JsonSerializable`的对象 - **输出 `json_encode` 后的字符串**
+1. 数组、`stdClass`或实现了`\JsonSerializable`的对象 - **输出 `json_encode` 后的字符串**
 
 ```php
 use Cabal\Core\Http\Server;
@@ -139,7 +139,7 @@ $route->get('/', function (\Cabal\Core\Http\Server $server, \Psr\Http\Message\Se
 });
 ```
 
-* 有 `render` 方法的对象 - **输出 render 返回的字符串**
+1. 有 `render` 方法的对象 - **输出 render 返回的字符串**
 
 ```php
 use Cabal\Core\Http\Server;
@@ -150,7 +150,7 @@ $route->get('/', function (\Cabal\Core\Http\Server $server, \Psr\Http\Message\Se
 });
 ```
 
-* 字符串或数字 - **输出字符串或数字**
+1. 字符串或数字 - **输出字符串或数字**
 
 ```php
 use Cabal\Core\Http\Server;

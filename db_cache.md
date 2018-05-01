@@ -12,12 +12,12 @@ class Boot extends Cabal\Core\Application\Boot
     //... 
 }
 ```
-然后在控制器中可以用 `$server->boot()->cache()` 获取到缓存引擎：
+然后在控制器中可以用 `$server->cache()` 获取到缓存引擎：
 
 ```php
 $route->get('/', function (Server $server, Request $request, $vars = []) {
     // cache for 1 minute
-    $data = $server->boot()->cache()->remember('key', 1, function () {
+    $data = $server->cache()->remember('key', 1, function () {
         return date('Y-m-d H:i:s');
     });
     return $data;
