@@ -13,4 +13,4 @@
 * 支持HTTP、TCP、websocket等多种协议
 
 [GitHub](https://github.com/cabalphp/skeleton/)
-[Get Started](#cabalphp)
+[Get Started](/quickstart.md)

@@ -90,6 +90,7 @@ CabalPHP 是一个基于Swoole的**稳定、轻量、高效、全异步**开源�
 ## 示例
 
 * [DEMO](http://demo.cabalphp.com/)
+* [DEMO-Chat](http://119.28.136.181:9501/chat) 
 
 ## 捐助
 
