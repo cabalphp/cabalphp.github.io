@@ -17,10 +17,10 @@ class Boot extends Cabal\Core\Application\Boot
 ```php
 $route->get('/', function (Server $server, Request $request, $vars = []) {
     // cache for 1 minute
-    $data = $server->cache()->remember('key', 1, function () {
+    $date = $server->cache()->remember('key', 1, function () {
         return date('Y-m-d H:i:s');
     });
-    return $data;
+    return $date;
 });
 ```
 
