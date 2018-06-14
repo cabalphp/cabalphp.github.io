@@ -15,7 +15,7 @@
     ],
 ```
 2. 在 `/etc/systemd/system/`目录中，创建一个 `cabal.service` 文件，添加下列内容（**注意修改php和项目路径**）：
-```php
+```ini
     [Unit]
     Description=Cabal Server
     After=network.target
