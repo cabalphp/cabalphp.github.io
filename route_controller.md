@@ -148,6 +148,65 @@ $route->get('/hello3/{id:\d+}', 'HelloController::staticWorld')
 ```
 
 
+## 过滤控制器/API控制器
+
+控制器继承 `Cabal\Core\Base\FilterController` 并实现 `rules` 方法，返回对应方法的规则即可自动约束请求参数。
+
+!> 校验只会校验请求参数，路由匹配出来的参数（$vars）不参与校验！
+
+我们使用的校验类为：[vlucas/valitron](https://github.com/vlucas/valitron)，支持的配置项和语法请参考该项目文档。
+
+```php
+<?php
+namespace App\Controller;
+
+use Cabal\Core\Http\Request;
+use Cabal\Core\Base\FilterController;
+
+class UserController extends FilterController
+{
+    public function rules()
+    {
+        return [
+            'get' => [
+                'id' => ['required', 'integer'],
+                'email' => ['required', 'email', ['lengthMin', 4]],
+            ],
+        ];
+    }
+
+    public function get(\Server $server, Request $request, $vars = [])
+    {
+        return [
+            'action' => __METHOD__,
+            'input' => $request->all(),
+            'vars' => $vars,
+        ];
+    }
+}
+```
+请求参数没通过校验系统会抛出一个`Cabal\Core\Exception\BadRequestException`异常，你可以在`routes.php`中自定义异常处理来决定你的请求响应。
+```php
+
+use Cabal\Core\Exception\BadRequestException;
+
+$dispatcher->registerExceptionHandler(function ($server, $ex, $chain, $request) {
+    if ($ex instanceof BadRequestException) {
+        return [
+            'code' => 1,
+            'msg' => $ex->getMessage(),
+            'msgs' => $ex->getMessages(),
+        ];
+    }
+    return [
+        'code' => -1,
+        'msg' => 'Internal Server Error',
+    ];
+});
+```
+
+
+
 ## 代码提示
 
 为了让 `routes.php` 有代码提示 请保留下面注释：
