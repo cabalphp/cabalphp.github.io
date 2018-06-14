@@ -8,9 +8,10 @@
 
 * 
 * 尤其适合前后端分离架构或微服务架构
-* 易于学习，开发效率高
-* 使用IDE（Sublime Text/VSCode/PhpStorm等）有**完整的代码提示**！
+* 易于学习，开发效率高，简单高效的**数据库引擎**
+* 使用IDE（Sublime Text/VSCode/PhpStorm等）有**完整的代码提示**
 * 支持HTTP、TCP、websocket等多种协议
 
 [GitHub](https://github.com/cabalphp/skeleton/)
+[Read More](/home.md)
 [Get Started](/quickstart.md)
