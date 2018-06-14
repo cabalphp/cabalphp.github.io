@@ -213,9 +213,9 @@ $dispatcher->registerExceptionHandler(function ($server, $ex, $chain, $request) 
 
 ```php
 /**
- * @var \Cabal\Core\Application\Dispatcher $route
+ * @var \Cabal\Core\Dispatcher $dispatcher
  */
 /**
- * @var \Cabal\Route\RouteCollection $dispatcher
+ * @var \Cabal\Route\RouteCollection $route
  */
 ```
