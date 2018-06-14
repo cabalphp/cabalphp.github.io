@@ -1,6 +1,6 @@
 ## CabalPHP
 
-CabalPHP 是一个基于Swoole的**稳定、轻量、高效、全异步**开源框架。
+CabalPHP 是一个基于Swoole的**轻量、高效、全异步**开源框架。
 
 
 ## 亮点
