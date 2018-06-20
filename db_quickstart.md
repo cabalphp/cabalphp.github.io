@@ -207,6 +207,38 @@ return $cabal->table('article')
 ```
 
 
+## 分页
+```php
+return $db->table('user')->paginate(3, 2);
+```
+
+返回：
+```json
+{
+    "lastPage":4,
+    "prePage":2,
+    "currentPage":3,
+    "total":7,
+    "offset":4,
+    "limit":2,
+    "data":[
+        {
+            "id":"5",
+            "username":"xxx1",
+            "password":"xxx1",
+            "created_at":"2018-04-30 18:23:34"
+        },
+        {
+            "id":"6",
+            "username":"xxx1",
+            "password":"xxx3",
+            "created_at":"2018-04-30 18:24:07"
+        }
+    ]
+}
+```
+
+
 ## 插入
 
 插入数据返回的是最后插入记录的ID。
@@ -264,6 +296,7 @@ $db->table('table_name')->limit($limit, $offset = null)
 $db->table('table_name')->offset($offset)
 
 $db->table('table_name')->rows()
+$db->table('table_name')->paginate(($currentPage, $perPage = 20, $columns = ['*']))
 $db->table('table_name')->first()
 
 $db->table('table_name')->count($field = '*')
