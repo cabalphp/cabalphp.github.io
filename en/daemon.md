@@ -1,72 +1,72 @@
-# 进程守护
+# Daemon
 
-建议使用 systemd 管理我们的服务进程。
+Recommended to use systemd to manage our service processes. 
 
-- 可以参考[swoole官方文档](https://wiki.swoole.com/wiki/page/699.html)
+- See [Swoole documentation](https://wiki.swoole.com/wiki/page/699.html) 
 
-## 使用方法
+## How to use 
 
-1. 请确保`cabal.php`配置文件中的`swoole.daemonize`配置为关闭状态（`0`或`false`）！
-```php
-    'swoole' => [
-        // ...
-        'daemonize' => 0,
-        // ...
-    ],
-```
-2. 在 `/etc/systemd/system/`目录中，创建一个 `cabal.service` 文件，添加下列内容（**注意修改php和项目路径**）：
-```ini
-    [Unit]
-    Description=Cabal Server
-    After=network.target
-    After=syslog.target
+1. Make sure the `swoole.daemonize` configuration in the `cabal.php` configuration file Is off state (`0` or `false`)! 
+```php 
+    'swoole' => [ 
+        // ... 
+        'daemonize' => 0, 
+        // ... 
+    ], 
+``` 
+2. In the `/etc/systemd/system/` directory, create a `` Cabal.service` file, add the following (**Note to modify php and project path**): 
+```ini 
+    [Unit] 
+    Description=Cabal Server 
+    After=network.target 
+    After=syslog.target 
 
-    [Service]
-    Type=simple
-    LimitNOFILE=65535
+    [Service] 
+    Type=simple 
+    LimitNOFILE =65535 
     ExecStart=/usr/local/php/bin/php /data/srv/demo/bin/cabal.php -e prod
-    ExecReload=/bin/kill -USR1 $MAINPID
-    Restart=always
+    ExecReload=/bin/kill -USR1 $MAINPID 
+    Restart=always 
 
-    [Install]
-    WantedBy=multi-user.target graphical.target
-```
-**可以在 `Server`下增加两个配置下指定用户（`User=xxx`）和用户组（`Group=myuser`）哦!**
+    [Install] 
+    WantedBy=multi-user.target graphical.target 
+``` 
+**You can add two users to the configuration under `Server` (`User=xxx` ) and user group (`Group=myuser`) Oh!** 
 
-3. 重新加载 systemd 
-```bash
-    sudo systemctl --system daemon-reload
-```
+3. Reload systemd 
+```bash 
+    sudo systemctl --system daemon-reload 
+``` 
 
-4. 服务管理
-```bash
-    #启动服务
-    sudo systemctl start cabal
-```
-```bash
-    #reload服务
-    sudo systemctl reload cabal
-```
-```bash
-    #关闭服务
-    sudo systemctl stop cabal
-```
-```bash
-    #查看服务状态
-    sudo systemctl status cabal
-```
+4. Service Management 
+```bash 
+    #Start 
+    Service sudo systemctl start cabal 
+``` 
+```bash 
+    #reload service 
+    sudo systemctl reload Cabal 
+``` 
+```bash 
+    # close the service 
+    sudo systemctl STOP Cabal 
+``` 
+```bash 
+    # check the service status 
+    sudo systemctl status Cabal 
+``` 
 
-5. 查看服务日志
-```bash
-    # 从头开始看所有日志
-    journalctl -u cabal
-    # 最后100条
-    journalctl -u cabal -n 100
-    # 最后100条且跟踪日志（有新日志会立刻输出到屏幕，类似 tail -f / tailf）
-    journalctl -u cabal -n 100 -f
-```
-`journalctl` 还有很多其他查询日志的方法，请自行查阅相关文档资料。
+5. Check service Log
+```bash 
+    # See all logs from the beginning 
+    journalctl -u cabal 
+    # last 100 
+    journallct -u cabal -n 100 
+    # last 100 and trace the log (new log will be output to the screen immediately, similar to tail -f / tailf) 
+    journalctl -u cabal -n 100 -f 
+``` 
+`journalctl` There are many other ways to query logs, please check the relevant documentation. 
 
 
 
-至此你的服务就可以稳定的运行啦！
+At this point your service will run steadily!
