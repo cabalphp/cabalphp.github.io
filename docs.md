@@ -1,12 +1,16 @@
 # 文档处理
+
 CabalPHP 支持接口文档自动生成。  
 
+编写好相关配置和文档注释后浏览器访问 `http://127.0.0.1:9501/__docs` 即可查看相关文档，注意检查自己的监听端口和IP。
 
-?> 接口文档地址只有debug环境下访问。
+点击[这里访问示例文档](http://demo.cabalphp.com/__docs#/)
+
+?> 接口文档地址只有debug环境（cabal.debug配置为true）下访问。
 
 ## 配置
 
-文档配置在 `conf/cabal.php` 内，
+文档相关配置在 `conf/cabal.php`
 ```php
     // ... 
     'document' => [
@@ -19,13 +23,14 @@ CabalPHP 支持接口文档自动生成。
     ],
     // ...
 ```
+
 ## 使用方法
 系统会自动根据你的路由配置，解析控制器方法的**注释**，自动生成生成，**文档更新同样需要`reload`或者`restart`服务器**。
 
 如果控制器继承自 `Cabal\Core\Base\FilterController` 系统会读取接口参数约束配置生成文档（接口参数的“约束”列）。  
 详情可查看 [路由 & 控制器](/route_controller.md?id=过滤控制器api控制器) 文档。  
 
-以下代码会生成一个[像这样的文档](/_media/docs.png ':ignore')。
+以下代码会生成一个[像这样的文档](http://demo.cabalphp.com/__docs#/%E7%94%A8%E6%88%B7 ':ignore')。
 
 ```php
 
@@ -34,28 +39,26 @@ class UserController extends FilterController
     public function rules()
     {
         return [
-            'post' => [
-                'email' => ['required', 'email'],
-                'username' => ['required', ['lengthMin', 4]],
-                'password' => ['required', ['lengthMin', 8]],
+            'get' => [
+                'id' => ['required', 'integer'],
+                // 'email' => ['required', 'email', ['lengthMin', 4]],
             ],
         ];
     }
 
     /**
-     * 创建用户
+     * 获取用户
      * @apiModule 用户
-     * @apiDescription 创建用户接口
+     * @apiDescription 获取用户接口
      * - 支持换行
      * - 支持markdown
-     * @apiParam email string 邮箱
-     * @apiParam username string 用户名
-     * @apiParam password string 密码
+     * @apiParam id string 用户ID
      * @apiSuccess int code 返回码，0表示成功
      * @apiSuccess string msg 提示信息
-     * @apiSuccess object data 数据
+     * @apiSuccess object data 提示信息
      * @apiSuccess object data.user 用户
      * @apiSuccess int data.user.id 用户ID
+     * @apiSuccess int data.user.username 用户名
      * @apiSuccess int data.user.createdAt 创建时间戳
      * @apiSuccessExample json 创建成果 {
      *     "code":0, 
@@ -63,6 +66,7 @@ class UserController extends FilterController
      *     "data":{
      *         "user": {
      *             "id": 1,
+     *             "username": "CabalPHP",
      *             "createdAt": 1530374400,
      *         }
      *     }
@@ -70,17 +74,37 @@ class UserController extends FilterController
      * @apiError int code 错误码
      * @apiError string msg 错误信息
      * @apiErrorExample json Example {
-     *      "code":1, 
-     *      "message":"邮箱已经被使用"
-     * }
+     *     "code": 1,
+     *     "message": "用户ID不存在"
+     * } 
+     * @apiErrorExample json Example2 {
+     *     "code": 1,
+     *     "message": "Id 只能是整数"
+     * } 
      */
-    public function post(\Server $server, Request $request, $vars = [])
+    public function get(\Server $server, Request $request, $vars = [])
     {
-        // return ['id' => $request->input('id'), 'name' => $request->input('name')];
-        return [$request->input('id'), $request->input('name')];
+        $id = $request->input('id');
+        if ($id < 10) {
+            return [
+                'code' => 0,
+                'message' => '',
+                'data' => [
+                    'user' => [
+                        'id' => $request->input('id'),
+                        'username' => 'CabalPHP',
+                        'createdAt' => 1530374400,
+                    ],
+                ],
+            ];
+        } else {
+            return [
+                'code' => 0,
+                'message' => '用户ID不存在',
+            ];
+        }
     }
 }
-
 ```
 
 ## 支持的语法

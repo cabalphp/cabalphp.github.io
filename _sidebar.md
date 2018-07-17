@@ -18,6 +18,7 @@
 * 数据库
 
   * [快速入门](/db_quickstart.md)
+  * [模型](/db_model.md)
   * [关联查询](/db_relationships.md)
   * [缓存](/db_cache.md)
   * [Redis](/db_redis.md)

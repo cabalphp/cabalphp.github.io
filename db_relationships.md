@@ -11,6 +11,25 @@ Cabal-DB 的关联数据查询主要用了两个方法：`->has('table')` 和`->
 * 文章标签关联记录属于一个标签和一篇文章
 
 
+## 语法
+拥有关系查询语法：  
+
+`$row->has($name, $foreignKeyOrCallback = null, $callback = null, $storeKey = null)`
+ - name 目标表名
+ - foreignKeyOrCallback 外键名称或者回调函数，如果不传或传入的是一个函数则外键默认为：表名+_id  `user_id`
+ - callback 回调函数，可以自己追加一些查询条件
+ - storeKey 存储键名 默认为表明，同一个关联表多次查询但是条件不同需要自定义存储键名
+
+属于关系查询语法：  
+
+`$row->belongs($name, $foreignKeyOrCallback = null, $callback = null, $storeKey = null)`
+ - name 目标表名
+ - foreignKeyOrCallback 外键名称或者回调函数，如果不传或传入的是一个函数则外键默认为：表名+_id  `user_id`
+ - callback 回调函数，可以自己追加一些查询条件
+ - storeKey 存储键名 默认为表明，同一个关联表多次查询但是条件不同需要自定义存储键名
+
+
+返回值说明：
 
 `->has('table')` 方法返回的是一个 `Cabal\DB\Rows` 对象里，也是一个所有元素都是 `Cabal\DB\Row` 的数组。
 
