@@ -14,5 +14,5 @@
 * 支持HTTP、TCP、websocket等多种协议
 
 [GitHub](https://github.com/cabalphp/skeleton/)
-[Read More](/home.md)
+[Read More](/README.md)
 [Get Started](/quickstart.md)
