@@ -3,7 +3,7 @@
 
 ## Installation
 
-### composer quick install
+### Composer quick install
 
 Domestic mirroring is recommended
 
