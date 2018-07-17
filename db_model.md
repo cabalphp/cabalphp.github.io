@@ -1,8 +1,12 @@
-# 数据库入门
+# 模型
 
 ## 概述
 
-要使用 Cabal-DB 需要先修改 `usr/init.php`，取消 `\Cabal\DB\Model::setDBManager($server->db());` 注释。
+要使用模型需要先修改 `usr/init.php`，取消 `\Cabal\DB\Model::setDBManager($server->db());` 注释。
+
+这里顺便说一下，[Martin Fowler架构大神](https://baike.baidu.com/item/Martin%20Fowler ':ignore') 很久之前就开始质疑ORM到底好与不好了[[点击查看原文](https://martinfowler.com/bliki/OrmHate.html ':ignore')]。
+
+使用 ORM 后通常开发效率会提高很多，但是在复杂的业务场景下，对象到处传递后，对象的值和数据库中的值是否一致变得很模糊，也就会增加代码的复杂度和维护难度变高。
 
 
 ## 定义
