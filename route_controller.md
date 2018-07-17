@@ -10,15 +10,15 @@
 支持的（请求）方法：
 ```php
 $route->map($method, $path, $handler);  // method 可以是数组 ['GET', 'POST`]
-$route->get($path, $hander); 
-$route->get($path, $hander); 
-$route->post($path, $hander); 
-$route->put($path, $hander); 
-$route->patch($path, $hander); 
-$route->delete($path, $hander); 
-$route->head($path, $hander); 
-$route->options($path, $hander); 
-$route->any($path, $hander);   // GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS 
+$route->get($path, $handler); 
+$route->get($path, $handler); 
+$route->post($path, $handler); 
+$route->put($path, $handler); 
+$route->patch($path, $handler); 
+$route->delete($path, $handler); 
+$route->head($path, $handler); 
+$route->options($path, $handler); 
+$route->any($path, $handler);   // GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS 
 ```
 
 ?> 路由配置修改后需要重启（restart）或者重新加载（reload）服务。
