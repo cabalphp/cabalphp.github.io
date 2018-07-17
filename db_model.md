@@ -7,7 +7,7 @@
 
 ## 定义
 
-下面是一个最简单的 Model 类：
+下面是一个最简单的 模型类：
 
 ```php
 use Cabal\DB\Model;
@@ -18,7 +18,7 @@ class User extends Model
 }
 ```
 
-Model 类还支持下面的配置和语法：
+模型类还支持下面的配置和语法：
 
 ```php
 use Cabal\DB\Model;
