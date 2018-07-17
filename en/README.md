@@ -1,40 +1,41 @@
 ## CabalPHP
 
-CabalPHP 是一个基于Swoole的**轻量、高效、全异步**开源框架。
+
+!> **The English version of the document uses Google Translate**
+
+CabalPHP is a lightweight, efficient, fully asynchronous open source framework based on Swoole.
 
 
-?> 作者已经在生产环境使用，腾讯云两台4H8G（CabalPHP+Redis两个服务）支持日活跃3000W+PV的统计业务，依靠Task进程异步将统计数据写入腾讯云MySQL。 
+?> The author has been used in the production environment,Tencent Cloud two 4H8G (CabalPHP + Redis two services) support the daily active 3000W + PV statistical business, relying on the Task process asynchronously to write statistical data into Tencent Cloud MySQL. 
 
-!> 框架并发场景已经得到验证，复杂业务场景尚未验证。   
-   至少我们发现了其他框架没发现的 Swoole MySQL协程大量请求场景下的BUG。 ^_^
-
-
-**欢迎大家加入QQ交流群：`36900937`**
-
-## 亮点
-
-* 全异步单机超高性能，轻松分布式部署
-* 支持HTTP、TCP、websocket等多种协议
-* **完善数据库引擎，简单高效**（其他swoole框架几乎没有哦）
-* 易于学习，开发效率高，简单高效的数据库引擎
-* **自动生成API接口文档**
-* 使用IDE（Sublime Text/VSCode/PhpStorm等）有完整的代码提示
+!> The framework concurrent scenario has been verified and the complex business scenario has not been verified.   
+   At least we found bugs in the Swoole MySQL coroutine request scenario that were not found by other frameworks. ^_^
 
 
-## 适用场景
+## Highlights
 
-* 微服务架构的RPC服务开发
-* 前后分离的应用（RESTful）API接口开发
-* 即时通讯服务端开发
-* 传统的Web网站，服务端渲染SEO友好
+* Fully asynchronous single machine ultra high performance, easy distributed deployment
+* Support HTTP, TCP, websocket and other protocols
+* ** Perfect database engine, simple and efficient** (other swoole frameworks are almost no oh)
+* Easy to learn, efficient development, simple and efficient database engine
+* **Automatically generate API interface documentation**
+* Complete code hints using IDE (Sublime Text/VSCode/PhpStorm, etc.)
 
-## 性能及压力测试
+
+## Applicable scene
+
+* RPC service development for microservice architecture
+* RESTful API interface development
+* Instant messaging server development
+* Traditional web site, server-side rendering SEO friendly
+
+## Performance and stress testing
 
 
-环境： 
+surroundings: 
 
-* 腾讯云 容器服务
-* 镜像: 基于 php:7.1-alpine 的swoole镜像
+* Tencent Cloud Container Service
+* Mirror: swoole image based on php:7.1-alpine
 * 1cores
 * 256MiB - 512MiB
 * php 7.1.12
@@ -87,21 +88,21 @@ CabalPHP 是一个基于Swoole的**轻量、高效、全异步**开源框架。
     Total:         79  289 165.9    267    1369
 
     Percentage of the requests served within a certain time (ms)
-    50%    267
-    66%    284
-    75%    303
-    80%    314
-    90%    347
-    95%    365
-    98%   1252
-    99%   1279
+    50% 267
+    66% 284
+    75% 303
+    80% 314
+    90% 347
+    95% 365
+    98% 1252
+    99% 1279
     100%   1369 (longest request)
 
-## 示例
+## Example
 
 * [DEMO](http://demo.cabalphp.com/)
 * [DEMO-Chat](http://119.28.136.181:9501/chat) 
 
-## 捐助
+## Donate
 
-先捐助些优秀的代码吧!
+Donate some excellent code first!
