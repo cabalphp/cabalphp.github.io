@@ -6,7 +6,7 @@ CabalPHP 支持接口文档自动生成。
 
 点击[这里访问示例文档](http://demo.cabalphp.com/__docs#/)
 
-?> 接口文档地址只有debug环境（cabal.debug配置为true）下访问。
+?> 接口文档地址只能在debug环境（`cabal.debug`配置为true）下访问。
 
 ## 配置
 

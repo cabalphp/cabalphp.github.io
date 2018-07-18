@@ -6,7 +6,7 @@ After writing the relevant configuration and documentation comments, the browser
 
 Click [here to access the sample document](http://demo.cabalphp.com/__docs#/)
 
-?> The interface document address is only accessible under the debug environment (the cabal.debug is configured to true).
+?> The interface document address is only accessible under the debug environment (the `cabal.debug` is configured to true).
 
 ## Configuration
 
