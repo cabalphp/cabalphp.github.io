@@ -38,6 +38,15 @@
       auto2top: true,
       noEmoji: true,
       coverpage: ['/', '/zh-cn/'],
+      search: {
+        noData: {
+          '/': '没有找到相关文档!'
+        },
+        paths: 'auto',
+        placeholder: {
+          '/': '请输出搜索关键词'
+        }
+      },
       plugins: [
         EditOnGithubPlugin.create('https://github.com/cabalphp/cabalphp.github.io/blob/master/', null, '编辑/Edit'),
         // power by
@@ -56,7 +65,8 @@
       ]
     }
   </script>
-  <script src="/_media//docsify.min.js"></script>
+  <script src="/_media/docsify.min.js"></script>
+  <script src="/_media/search.min.js"></script>
   <script src="/_media/prism-bash.min.js"></script>
   <script src="/_media/prism-json.min.js"></script>
   <script src="/_media/prism-php.min.js"></script>
