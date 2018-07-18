@@ -52,7 +52,7 @@ class UserController extends FilterController
      * @apiDescription Get user interface
      * - Support for line breaks
      * - Support markdown
-     * @apiParam id string user ID
+     * @apiParam string id user ID
      * @apiSuccess int code return code, 0 means success
      * @apiSuccess string msg prompt message
      * @apiSuccess object data prompt message

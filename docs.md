@@ -52,7 +52,7 @@ class UserController extends FilterController
      * @apiDescription 获取用户接口
      * - 支持换行
      * - 支持markdown
-     * @apiParam id string 用户ID
+     * @apiParam string id 用户ID
      * @apiSuccess int code 返回码，0表示成功
      * @apiSuccess string msg 提示信息
      * @apiSuccess object data 提示信息
@@ -112,6 +112,7 @@ class UserController extends FilterController
 * @apiDescription 接口描述  可以换行，支持markdown
 * @apiModule 模块名称  不能换行
 * @apiIgnore 默认为不忽略，如果接口没有有注释但又不想展示文档时需要指定忽略该接口
+* @apiParam 请求参数
 * @apiSuccess 成功时候返回的字段
 * @apiError 错误时候返回的字段
 * @apiSuccessExample 成功返回示例
@@ -124,6 +125,7 @@ class UserController extends FilterController
      * 可以换行支持markdown
      * @apiModule 模块名称
      * @apiIgnore 1
+     * @apiParam 字段类型 字段1 字段说明
      * @apiSuccess 字段类型 字段1 字段说明
      * @apiSuccess 字段类型 字段2 字段说明
      * @apiError 字段类型 字段1 字段说明
