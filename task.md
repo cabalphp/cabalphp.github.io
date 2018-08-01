@@ -43,6 +43,7 @@ class TestController
     public function task(\Server $server, $taskId, $workerId, $vars = [])
     {
         echo date('Y-m-d H:i:s') . ' vars: ' . json_encode($vars) . "\r\n";
+        sleep(1); 
         // 其他阻塞代码 ...
         // 比如发送邮件、磁盘写等
         // 此处获取的 $server->db() 或者 $server->cache() 都是阻塞对象
@@ -56,8 +57,7 @@ class TestController
     {
         // 此处在 worker 进程执行，请注意不要有阻塞代码
         // 此处获取的 $server->db() 或者 $server->cache() 都是swoole协程的非阻塞对象
-
-        var_dump($vars);
+        echo date('Y-m-d H:i:s') . ' vars: ' . json_encode($vars) . "\r\n";
     }
 }
 
@@ -70,11 +70,8 @@ $server->task(new Chain('App\Task\TestController@task', [], [1, 2]));
 
 以上代码会在控制台输出
 
-    2018-08-01 18:06:19 vars: [1,2]
-    array(1) {
-    [0]=>
-    string(13) "5b61861b01e6f"
-    }
+    2018-08-01 18:23:45 vars: [1,2]
+    2018-08-01 18:23:46 vars: ["5b618a32d473b"]
 
 
 ?> tasker 或者 worker 进程中的数据库操作和缓存操作语法都一样，你没有什么需要注意的
