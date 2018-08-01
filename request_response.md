@@ -1,7 +1,7 @@
 # 请求 & 响应
 
 
-CabalPHP 的请求（Request）和响应（Response）对象依赖 [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) 实现了 [PSR-7标准](http://www.php-fig.org/psr/psr-7/) [psr/http-message](https://github.com/php-fig/http-message)  中的 `Psr\Http\Message\ServerRequestInterface`和`Psr\Http\Message\ResponseInterface` 的全部接口，同时也扩展了自己的一下实用方法方便实用。
+CabalPHP 的请求（Request）和响应（Response）对象依赖 [zendframework/zend-diactoros](https://github.com/zendframework/zend-diactoros) 实现了 [PSR-7标准](http://www.php-fig.org/psr/psr-7/) [psr/http-message](https://github.com/php-fig/http-message)  中的 `Psr\Http\Message\ServerRequestInterface`和`Psr\Http\Message\ResponseInterface` 的全部接口，同时也扩展了自己的一些实用方法方便使用。
 
 
 ## 获取请求
@@ -73,8 +73,9 @@ $request->input('name', 'cabalphp');
 $request->except(['email','password']); 
 ```
 
-* 获取除了 `email` 和 `password` 外的其他所有参数，可以传递多个参数：
+* 获取除了 `email` 和 `password` 外的其他所有参数，可以传递多个参数，也可以第一个参数传递数组：
 ```php
+$request->except('email','password'); 
 $request->except(['email','password']); 
 ```
 

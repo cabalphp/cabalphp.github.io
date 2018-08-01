@@ -6,7 +6,7 @@
 CabalPHP is a lightweight, efficient, fully asynchronous open source framework based on Swoole.
 
 
-?> The author has been used in the production environment,Tencent Cloud two 4H8G (CabalPHP + Redis two services) support the daily active 3000W + PV statistical business, relying on the Task process asynchronously to write statistical data into Tencent Cloud MySQL. 
+?> The author has been used in the production environment,Tencent Cloud two 4H8G (CabalPHP + Redis two services) support the daily active 6000W + PV statistical business, relying on the Task process asynchronously to write statistical data into Tencent Cloud MySQL. 
 
 !> The framework concurrent scenario has been verified and the complex business scenario has not been verified.   
    At least we found bugs in the Swoole MySQL coroutine request scenario that were not found by other frameworks. ^_^
