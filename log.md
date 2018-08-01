@@ -7,7 +7,7 @@ CabalPHP的日志系统用的是 Monolog 组件，我们改写了一下日志写
 ## 配置
 
 日志配置在 `conf/cabal.php`中 
-```
+```php
     'logFile' => 'var/log/cabal.log',
     'logLevel' => \Monolog\Logger::DEBUG,
 ```
@@ -15,7 +15,7 @@ CabalPHP的日志系统用的是 Monolog 组件，我们改写了一下日志写
 
 ## 记录日志
 
-```
+```php
 \Cabal\Core\Logger::emergency($message, array $context = []);
 \Cabal\Core\Logger::alert($message, array $context = []);
 \Cabal\Core\Logger::critical($message, array $context = []);
@@ -27,11 +27,13 @@ CabalPHP的日志系统用的是 Monolog 组件，我们改写了一下日志写
 \Cabal\Core\Logger::debug($message, array $context = []);
 ```
 
-## 修改日子写入方式
+## 修改日志写入方式
 
-你可以用`Logger::instance()`方法获取默认 Monolog 实例，增加或 Monolog 的写入方法：
-```
+你可以用`Logger::instance()`方法获取默认 Monolog 实例，增加或指定 Monolog 的写入方法：
+```php
 \Cabal\Core\Logger::instance()->pushHandler($handler);
+
+\Cabal\Core\Logger::instance()->setHandlers(array $handlers);
 ```
 
 更多方法请查看 [Monolog 文档](https://github.com/Seldaek/monolog);
@@ -40,7 +42,7 @@ CabalPHP的日志系统用的是 Monolog 组件，我们改写了一下日志写
 
 你可以用 `Logger::instance($name)` 创建一个自己的 Monologo 实例并指定写入方式，比如文件存储或者远程UDP传输都可以，具体请查看 [Monolog 文档](https://github.com/Seldaek/monolog);
 
-```
+```php
 \Cabal\Core\Logger::instance('task')->pushHandler(
     new StreamHandler(
         $server->rootPath('var/log/task.log'),

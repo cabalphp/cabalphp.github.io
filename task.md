@@ -1,4 +1,80 @@
 # 任务
 
 
-## 
+## 投送任务
+
+可以通过 `$server->task(Chain $chain, $dstWorkerId = -1)` 投递任务
+
+
+handler 执行完后如果返回一个 `Cabal\Core\Chain` 对象则系统会在worker进程中自动调用对应的 handler 方法，
+
+**如果执行的任务不需要回调行为请不要返回任何值！**
+
+----
+
+`Cabal\Core\Chain` 对象构造函数如下 
+
+```php
+namespace Cabal\Core;
+
+class Chain
+    public function __construct($handler, $middleware, $vars = []){}
+}
+```
+
+ * $handler 投递的任务handler必须是字符串 className@method 或者 className@staticMethod
+ * $middleware 需要执行的中间件名称，数组或字符串(单个中间件可以用字符串)
+ * $vars 对应handler方法的最后一个变量
+
+!> 传入的方法数据必须是可以被序列化的内容，不能使资源类内容！
+
+
+**一个投递任务的例子：**
+
+```php
+namespace App\Task
+
+use Cabal\Core\Chain;
+
+class TestController
+{
+    public function task(\Server $server, $taskId, $workerId, $vars = [])
+    {
+        echo date('Y-m-d H:i:s') . "\r\n";
+        // 其他阻塞代码 ...
+        // 比如发送邮件、磁盘写等
+        // 此处获取的 $server->db() 或者 $server->cache() 都是阻塞对象
+
+
+        // return Chain 则会执行回调方法
+        return new Chain('App\Task\TestController@finish', [], [uniqid()]);
+    }
+
+    public function finish(\Server $server, $taskId, $vars = [])
+    {
+        // 此处在 worker 进程执行，请注意不要有阻塞代码
+        // 此处获取的 $server->db() 或者 $server->cache() 都是swoole协程的非阻塞对象
+
+        var_dump($vars);
+    }
+}
+
+
+// 投入任务
+$server->task(new Chain('App\Task\TestController@task', [], [1, 2]));
+```
+
+```
+
+以上代码会在控制台输出
+
+    2018-07-01 00:00:00
+    array(1) {
+      [0]=>
+      string(13) "5b6180f291549"
+    }
+
+
+?> tasker 或者 worker 进程中的数据库操作或者换成操作语法都一样，你没有什么需要注意的
+
+
