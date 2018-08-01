@@ -1,5 +1,9 @@
 # 数据库入门
 
+Cabal-DB 使用的是swoole的协程MySQL类+原生PDO，分别用于 worker 进程和 tasker 进程，在 worker 中是全异步（协程）不会有阻塞问题，在 tasker 中是阻塞的。
+
+无论在什么进程中使用方法都是一样的，你不需要担心他们的区别。
+
 ## 概述
 
 要使用 Cabal-DB 需要先修改 `usr/boot.php`，取消 `Boot` 类中的 `use Cabal\DB\ServerHasDB` 注释：

@@ -1,5 +1,11 @@
 # 缓存
 
+CabalPHP 的缓存模块使用的是swoole的协程Redis类+phpredis，分别用于 worker 进程和 tasker 进程，在 worker 中是全异步（协程）不会有阻塞问题，在 tasker 中是阻塞的。
+
+无论在什么进程中使用方法都是一样的，你不需要担心他们的区别。
+
+?> 在 tasker 中使用你需要安装 [phpredis 扩展](https://github.com/phpredis/phpredis)
+
 ## 配置
 
 要使用缓存请先修改 `usr/boot.php`，取消 `Boot` 类中的 `use Cabal\Core\Cache\Boot\HasCache` 注释：
