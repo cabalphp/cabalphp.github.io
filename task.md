@@ -77,6 +77,6 @@ $server->task(new Chain('App\Task\TestController@task', [], [1, 2]));
     }
 
 
-?> tasker 或者 worker 进程中的数据库操作或者换成操作语法都一样，你没有什么需要注意的
+?> tasker 或者 worker 进程中的数据库操作和缓存操作语法都一样，你没有什么需要注意的
 
 
