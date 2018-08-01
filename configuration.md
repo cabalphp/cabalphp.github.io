@@ -54,3 +54,11 @@ return [
 ```
 服务将会启动在 http://127.0.0.1:8080/ 。
 
+
+## 初始化
+
+在所有进程（包括worker和tasker）启动后（onWorkerStart）都会调用 `usr/init.php`，你可以在这里初始化公共对象或所有进程都需要执行的代码（比如将DBManager类注入到Model中）。
+
+worker 进程启动后会引用 `usr/routes.php`，该文件主要用于注册路由或其他worker进程相关代码。
+
+tasker 进程启动后会引用 `usr/tasks.php`，该文件主要用于初始化计时器或其他tasker进程相关代码。
