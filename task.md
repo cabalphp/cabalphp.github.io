@@ -66,7 +66,7 @@ class TestController
 $server->task(new Chain('App\Task\TestController@task', [], [1, 2]));
 ```
 
-```
+
 
 以上代码会在控制台输出
 
@@ -77,3 +77,45 @@ $server->task(new Chain('App\Task\TestController@task', [], [1, 2]));
 ?> tasker 或者 worker 进程中的数据库操作和缓存操作语法都一样，你没有什么需要注意的
 
 
+
+
+## 定时任务
+
+如果你需要执行定时任务，你可以在在 `usr/tasks.php` 文件中用 `$server->tick` 方法创建计时器，你可以在匿名函数内使用 `Chain` 对象执行其他类的方法。
+
+
+
+```php
+$chain->execute(array $params);
+```
+
+ * $params 是调用方法的参数，类似 `call_user_func_array($callback, $param_arr)` 方法的第二个参数 execute会在 `$params` 最后加构造时传入的 `$vars`
+
+
+**一个简单的例子：**
+
+```php
+namespace App\Task
+
+use Cabal\Core\Chain;
+
+class TickController
+{
+    public function task(\Server $server, $workerId, $vars = [])
+    {
+        echo date('Y-m-d H:i:s') . ' workerId: ' . $workerId  . ' vars: ' . json_encode($vars) . "\r\n";
+        sleep(1); 
+        // 其他阻塞代码 ...
+        // 比如发送邮件、磁盘写等
+        // 此处获取的 $server->db() 或者 $server->cache() 都是阻塞对象
+    }
+
+}
+
+// 计时器
+$server->tick( 1000, function () use ($server) {
+    $chain = new Chain('App\Task\TestController@task', [], [1,2,3]);
+    $chain->execute([$server, $taskId, $workerId]);
+});
+
+```
