@@ -1,7 +1,7 @@
 # 任务
 
 
-## 投送任务
+## 方法说明
 
 可以通过 `$server->task(Chain $chain, $dstWorkerId = -1)` 投递任务
 
@@ -29,6 +29,8 @@ class Chain
 !> 传入的方法数据必须是可以被序列化的内容，不能使资源类内容！
 
 
+## 投送任务
+
 **一个投递任务的例子：**
 
 ```php
@@ -40,7 +42,7 @@ class TestController
 {
     public function task(\Server $server, $taskId, $workerId, $vars = [])
     {
-        echo date('Y-m-d H:i:s') . "\r\n";
+        echo date('Y-m-d H:i:s') . ' vars: ' . json_encode($vars) . "\r\n";
         // 其他阻塞代码 ...
         // 比如发送邮件、磁盘写等
         // 此处获取的 $server->db() 或者 $server->cache() 都是阻塞对象
@@ -68,10 +70,10 @@ $server->task(new Chain('App\Task\TestController@task', [], [1, 2]));
 
 以上代码会在控制台输出
 
-    2018-07-01 00:00:00
+    2018-08-01 18:06:19 vars: [1,2]
     array(1) {
-      [0]=>
-      string(13) "5b6180f291549"
+    [0]=>
+    string(13) "5b61861b01e6f"
     }
 
 
