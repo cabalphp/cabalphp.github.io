@@ -7,7 +7,7 @@
     * 使用socket快速回收，短连接Server需要开启此参数。此参数表示开启TCP连接中TIME-WAIT sockets的快速回收，Linux系统中默认为0，表示关闭。**打开此参数可能会造成NAT用户连接不稳定，请谨慎测试后再开启。**
 * net.ipv4.tcp_tw_reuse
     * 此项的作用是Server重启时可以快速重新使用监听的端口。如果没有设置此参数，会导致server重启时发生端口未及时释放而启动失败
-* overcommit_memory
+* net.core.somaxconn
     * 定义了系统中每一个端口最大的监听队列的长度,这是个全局的参数,默认值为128.限制了每个端口接收新tcp连接侦听队列的大小。对于一个经常处理新连接的高负载 web服务环境来说，默认的 128 太小了。大多数环境这个值建议增加到 1024 或者更多。 服务进程会自己限制侦听队列的大小(例如 sendmail(8) 或者 Apache)，常常在它们的配置文件中有设置队列大小的选项。大的侦听队列对防止拒绝服务 DoS 攻击也会有所帮助。
 * vm.overcommit_memory 
     * 设置内存分配策略，redis推荐打开配置
@@ -35,3 +35,11 @@ net.ipv4.tcp_tw_reuse=1
 net.core.somaxconn=1024
 vm.overcommit_memory=1
 ```
+
+
+## swoole编译配置
+
+* 可以考虑启用openssl备用
+* 使用异步redis
+
+./configure --enable-openssl--enable-async-redis --enable-mysqlnd
