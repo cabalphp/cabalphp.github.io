@@ -52,7 +52,7 @@ $request->only('username', 'password');
 $request->isXhr();
 ```
 
-* 判断是否是制定的请求方法（GET HEAD OPTION DELETE HEAD等）：
+* 判断是否是指定的请求方法（GET HEAD OPTION DELETE HEAD等）：
 ```php
 $request->isMethod('GET'); 
 ```
